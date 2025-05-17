@@ -16,6 +16,11 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    env:
+        MLFLOW_TRACKING_URI: https://dagshub.com/rafifardhana1503/Membangun_model
+        MLFLOW_TRACKING_USERNAME: rafifardhana1503
+        MLFLOW_TRACKING_PASSWORD: ${{ secrets.MLFLOW_TRACKING_PASSWORD }}
+
     steps:
     - name: Checkout Repository
       uses: actions/checkout@v3
@@ -36,11 +41,8 @@ jobs:
         pip install python-dotenv
 
     - name: Run MLflow Project
-      env:
-        MLFLOW_TRACKING_USERNAME: ${{ secrets.MLFLOW_TRACKING_USERNAME }}
-        MLFLOW_TRACKING_PASSWORD: ${{ secrets.MLFLOW_TRACKING_PASSWORD }}
       run: |
-        mlflow run ./MLProject --env-manager=local
+        mlflow run MLProject --env-manager=local
 
     - name: Get latest MLflow run_id
       run: |

@@ -43,15 +43,8 @@ jobs:
       run: |
         mlflow run MLProject --env-manager=local
 
-    - name: Get latest MLflow run_id from DagsHub
-      id: get_run_id
-      env:
-        MLFLOW_TRACKING_URI: https://dagshub.com/rafifardhana1503/Membangun_model.mlflow/
-        MLFLOW_TRACKING_USERNAME: ${{ secrets.MLFLOW_TRACKING_USERNAME }}
-        MLFLOW_TRACKING_PASSWORD: ${{ secrets.MLFLOW_TRACKING_PASSWORD }}
+    - name: Get latest MLflow run_id
       run: |
-        python scripts/get_latest_run_id.py | tee get_run_id.log
-        RUN_ID=$(grep RUN_ID get_run_id.log | cut -d'=' -f2)
-        echo "RUN_ID=$RUN_ID" >> $GITHUB_ENV
-        echo "run_id=$RUN_ID" >> $GITHUB_OUTPUT
-        echo "Latest run_id: $RUN_ID"
+        RUN_ID=$(ls -td mlruns/0/*/ | head -n 1 | cut -d'/' -f3)
+          echo "RUN_ID=$RUN_ID" >> $GITHUB_ENV
+          echo "Latest run_id: $RUN_ID"

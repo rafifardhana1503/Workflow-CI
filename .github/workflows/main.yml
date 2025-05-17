@@ -36,6 +36,9 @@ jobs:
         pip install python-dotenv
 
     - name: Run MLflow Project
+      env:
+        MLFLOW_TRACKING_USERNAME: ${{ secrets.MLFLOW_TRACKING_USERNAME }}
+        MLFLOW_TRACKING_PASSWORD: ${{ secrets.MLFLOW_TRACKING_PASSWORD }}
       run: |
         mlflow run ./MLProject --env-manager=local
 

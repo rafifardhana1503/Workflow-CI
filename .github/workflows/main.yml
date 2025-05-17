@@ -46,11 +46,11 @@ jobs:
     - name: Get latest MLflow run_id
       run: |
         RUN_ID=$(ls -td mlruns/0/*/ | head -n 1 | cut -d'/' -f3)
-        echo "RUN_ID=$RUN_ID" >> $GITHUB_ENV
-        echo "Latest run_id: $RUN_ID"
+        echo "RUN_ID=$RUN_ID"
+        echo "::set-output name=run_id::$RUN_ID"
 
     - name: Upload to GitHub Artifact
       uses: actions/upload-artifact@v3
       with:
-        name: mlflow-artifacts-${{ env.RUN_ID }}
-        path: mlruns/0/${{ env.RUN_ID }}
+        name: mlflow-artifacts-${{ steps.get_run_id.outputs.run_id }}
+        path: mlruns/0/${{ steps.get_run_id.outputs.run_id }}

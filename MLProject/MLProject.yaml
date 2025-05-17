@@ -4,5 +4,8 @@ conda_env: conda.yaml
 
 entry_points:
   main:
+    parameters:
+      csv_url: {type: str, default: "dataset_preprocessing/telco-customer-churn_preprocessing.csv"}
+      target_var: {type: str, default: "Churn"}
     command: >
-      python modelling.py
+      python modelling.py --csv_url {csv_url} --target_var {target_var}

@@ -64,7 +64,7 @@ if __name__ == "__main__":
 
     # Set MLflow tracking URI
     mlflow.set_tracking_uri("https://dagshub.com/rafifardhana1503/Membangun_model.mlflow/")
-    mlflow.set_experiment("Telco_Customer_Churn_Model_Tunning")
+    mlflow.set_experiment("Modelling_tunning_manuallog")
 
     with mlflow.start_run(run_name="Modelling_tunning_manuallog"):
         model, accuracy, report, best_params, X_test = modeling_with_tuning(input_file)

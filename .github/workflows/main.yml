@@ -60,3 +60,13 @@ jobs:
         with open("${GITHUB_ENV}", "a") as f:
           f.write(f"RUN_ID={run_id}\n")
         EOF
+
+    - name: Install Python Dependencies
+      run: |
+        pip install -r MLProject/requirements.txt
+
+    - name: Upload Artifact to GitHub
+      uses: actions/upload-artifact@v4
+      with:
+        name: rf_model_artifact
+        path: mlruns/0/${{ env.RUN_ID }}/artifacts/rf_best_model

@@ -11,6 +11,9 @@ on:
 env:
   CSV_URL: MLProject/dataset_preprocessing/telco-customer-churn_preprocessing.csv
   TARGET_VAR: Churn
+  MLFLOW_TRACKING_URI: https://dagshub.com/rafifardhana1503/Membangun_model.mlflow/
+  MLFLOW_TRACKING_USERNAME: ${{ secrets.MLFLOW_TRACKING_USERNAME }}
+  MLFLOW_TRACKING_PASSWORD: ${{ secrets.MLFLOW_TRACKING_PASSWORD }}
 
 jobs:
   build:
@@ -36,11 +39,6 @@ jobs:
         pip install python-dotenv
 
     - name: Run MLflow Project
-      env:
-        MLFLOW_TRACKING_URI: https://dagshub.com/rafifardhana1503/Membangun_model.mlflow/
-        MLFLOW_TRACKING_USERNAME: ${{ secrets.MLFLOW_TRACKING_USERNAME }}
-        MLFLOW_TRACKING_PASSWORD: ${{ secrets.MLFLOW_TRACKING_PASSWORD }}
-        EXPERIMENT_NAME: ${{ env.EXPERIMENT_NAME }}
       run: |
         mlflow run MLProject --env-manager=local
 

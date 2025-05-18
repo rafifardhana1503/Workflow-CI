@@ -9,8 +9,9 @@ on:
       - main
 
 env:
-  CSV_URL: "MLProject/dataset_preprocessing/telco-customer-churn_preprocessing.csv"
-  TARGET_VAR: "Churn"
+  EXPERIMENT_NAME: Modelling_tunning_manuallog
+  CSV_URL: MLProject/dataset_preprocessing/telco-customer-churn_preprocessing.csv
+  TARGET_VAR: Churn
 
 jobs:
   build:
@@ -49,7 +50,7 @@ jobs:
         python <<EOF
         import mlflow
         client = mlflow.tracking.MlflowClient()
-        experiment = client.get_experiment_by_name("Telco_Customer_Churn_Model_Tunning")
+        experiment = client.get_experiment_by_name("${{ env.EXPERIMENT_NAME }}")
         if experiment is None:
           raise Exception("Experiment not found.")
         runs = client.search_runs(experiment_ids=[experiment.experiment_id], order_by=["start_time DESC"])

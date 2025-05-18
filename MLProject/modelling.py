@@ -50,7 +50,7 @@ def modeling_with_tuning(filepath):
     print("Classification Report:")
     print(classification_report(y_test, y_pred))
 
-    return best_model, accuracy, report, grid_search.best_params_
+    return best_model, accuracy, report, grid_search.best_params_, X_test
 
 if __name__ == "__main__":
     input_file = "dataset_preprocessing/telco-customer-churn_preprocessing.csv"
@@ -67,7 +67,7 @@ if __name__ == "__main__":
     mlflow.set_experiment("Telco_Customer_Churn_Model_Tunning")
 
     with mlflow.start_run(run_name="Modelling_tunning_manuallog"):
-        model, accuracy, report, best_params = modeling_with_tuning(input_file)
+        model, accuracy, report, best_params, X_test = modeling_with_tuning(input_file)
 
         # Log params
         for param, value in best_params.items():

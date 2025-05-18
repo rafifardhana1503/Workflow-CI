@@ -80,7 +80,7 @@ jobs:
 
     - name: Build Docker Model
       run: |
-        mlflow models build-docker --model-uri "runs:/$RUN_ID/model" --name "telco_customer_churn_model"
+        mlflow models build-docker --model-uri "runs:/$RUN_ID/rf_best_model" --name "telco_customer_churn_model"
 
     - name: Log in to Docker Hub
       uses: docker/login-action@v2

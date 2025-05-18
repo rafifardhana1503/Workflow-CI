@@ -9,7 +9,6 @@ on:
       - main
 
 env:
-  EXPERIMENT_NAME: Telco_Customer_Churn_Model_Tunning
   CSV_URL: MLProject/dataset_preprocessing/telco-customer-churn_preprocessing.csv
   TARGET_VAR: Churn
 

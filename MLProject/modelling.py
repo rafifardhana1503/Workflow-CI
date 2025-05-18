@@ -84,7 +84,7 @@ if __name__ == "__main__":
         mlflow.set_tag("model_type", "RandomForestClassifier")
 
         # Tambah signature
-        input_example = X_test.iloc[1]
+        input_example = X_test.iloc[:1]
         signature = infer_signature(X_test, model.predict(X_test))
 
         # Simpan model ke dalam MLflow dengan nama artifact rf_model

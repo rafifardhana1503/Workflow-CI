@@ -9,6 +9,7 @@ on:
       - main
 
 env:
+  EXPERIMENT_NAME: Telco_Customer_Churn_Model_Tunning
   CSV_URL: MLProject/dataset_preprocessing/telco-customer-churn_preprocessing.csv
   TARGET_VAR: Churn
   MLFLOW_TRACKING_URI: https://dagshub.com/rafifardhana1503/Membangun_model.mlflow/

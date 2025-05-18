@@ -5,6 +5,7 @@ from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn.metrics import accuracy_score, classification_report
 import mlflow
 import mlflow.sklearn
+from mlflow.models.signature import infer_signature
 import os
 from dotenv import load_dotenv
 
@@ -82,7 +83,16 @@ if __name__ == "__main__":
         mlflow.set_tag("stage", "tunning")
         mlflow.set_tag("model_type", "RandomForestClassifier")
 
+        # Tambah signature
+        input_example = X_test.iloc[1]
+        signature = infer_signature(X_test, model.predict(X_test))
+
         # Simpan model ke dalam MLflow dengan nama artifact rf_model
-        mlflow.sklearn.log_model(model, artifact_path="rf_best_model")
+        mlflow.sklearn.log_model(
+            model,
+            artifact_path="rf_best_model",
+            signature=signature,
+            input_example=input_example
+        )
 
         print("Proses tunning dan logged MLflow selesai")

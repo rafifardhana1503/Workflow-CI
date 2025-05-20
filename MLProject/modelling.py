@@ -93,7 +93,7 @@ if __name__ == "__main__":
             artifact_path="rf_best_model",
             signature=signature,
             input_example=input_example,
-            conda_env="MLProject/conda.yaml"
+            conda_env="conda.yaml"
         )
 
         print("Proses tunning dan logged MLflow selesai")
